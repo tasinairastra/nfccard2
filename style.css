@@ -1,0 +1,229 @@
+/* CSS Styling for the UI (Air Astra Blue/Yellow/White Theme) */
+:root {
+    /* Colors derived directly from the Air Astra homepage screenshot */
+    --primary-blue: #004d80; /* Darker blue for header/accents */
+    --light-blue-bg: #e0f2ff; /* Very light blue for background */
+    --accent-yellow: #fdd835; /* Bright yellow for highlights/buttons */
+    --text-dark: #333333; /* Dark text for readability */
+    --text-light: #ffffff; /* White text on dark backgrounds */
+    --card-bg-light: #ffffff; /* White for main cards */
+    --border-light: #cccccc; /* Light border for separation */
+
+    --border-radius-lg: 15px;
+    --border-radius-sm: 8px;
+    --shadow-effect: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    --glow-effect-yellow: 0 0 10px rgba(253, 216, 53, 0.7); /* Yellow glow for premium feel */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-blue-bg); /* Light blue background */
+    color: var(--text-dark); /* Default text color is dark */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top for mobile scroll */
+    min-height: 100vh;
+    overflow-y: auto; /* Enable scrolling for content */
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 400px; /* Typical phone width */
+    background-color: var(--card-bg-light); /* White container background */
+    box-shadow: var(--shadow-effect);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    margin: 20px 0; /* Add some vertical margin for overall container */
+}
+
+/* Header */
+.top-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--primary-blue); /* Dark blue header */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.top-nav .air-astra-header-logo {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+    /* Invert logo colors for contrast on dark blue background. Adjust if using a white logo directly. */
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(0,0,0,0.3)); 
+}
+
+.user-greeting {
+    font-size: 1.1em;
+    color: var(--text-light); /* White text on dark blue */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Profile Card */
+.profile-card-section {
+    padding: 25px;
+    background-color: var(--card-bg-light); /* White card background */
+    margin: 20px; /* Margin around the card to simulate desktop spacing */
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-effect), var(--glow-effect-yellow); /* Soft shadow with yellow glow */
+    border: 1px solid var(--accent-yellow); /* Yellow border */
+    text-align: center;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-image-container {
+    position: relative;
+    width: 120px; /* Size of the circular container */
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 2px solid var(--accent-yellow); /* Yellow border around image */
+    box-shadow: 0 0 10px rgba(253, 216, 53, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Light background for image area */
+}
+
+.profile-image { /* Style for the fetched photoURL */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area, crop if necessary */
+    transform: scale(1.0); /* No aggressive zoom */
+    opacity: 1;
+    filter: grayscale(0%); /* Keep original photo colors for fetched images */
+}
+
+/* You can uncomment and use this if you want a logo overlay on the profile image */
+.profile-card-logo-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%; /* Size of the logo over the image */
+    height: auto;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+    display: none; /* Hidden by default */
+}
+
+.profile-info h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.8em;
+    color: var(--text-dark); /* Dark text */
+}
+
+.profile-info .role {
+    margin: 0 0 3px 0;
+    font-size: 1em;
+    color: var(--text-dark); /* Dark text */
+}
+
+.profile-info .company {
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--primary-blue); /* Blue for company name */
+    font-weight: bold;
+}
+
+.save-contact-btn {
+    background-color: var(--accent-yellow); /* Yellow button */
+    color: var(--text-dark); /* Dark text on yellow button */
+    border: none;
+    padding: 12px 30px;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px rgba(253, 216, 53, 0.5);
+    text-transform: uppercase;
+    text-decoration: none; /* For when it's an <a> tag */
+    display: inline-block; /* For when it's an <a> tag */
+    margin-top: 20px;
+}
+
+.save-contact-btn:hover {
+    background-color: #ffe06b; /* Lighter yellow on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(253, 216, 53, 0.8);
+}
+
+/* Contact Details */
+.contact-details {
+    padding: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg-light); /* White background for items */
+    margin-bottom: 12px;
+    padding: 15px;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    color: var(--text-dark); /* Dark text for items */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    border: 1px solid var(--border-light); /* Light grey border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Lighter shadow */
+    position: relative; /* For the focus ring */
+}
+
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-item:hover {
+    background-color: #f8f8f8; /* Slightly darker white on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus ring for accessibility */
+.contact-item:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--accent-yellow), 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item .icon {
+    font-size: 1.3em;
+    color: var(--primary-blue); /* Blue icons */
+    margin-right: 15px;
+    min-width: 25px; /* Ensure icon has consistent width */
+    text-align: center;
+}
+
+.contact-item span {
+    flex-grow: 1;
+    font-size: 1em;
+    color: var(--text-dark); /* Dark text for item labels */
+    word-break: break-word; /* Prevent long text from overflowing */
+}
+
+.contact-item .arrow {
+    font-size: 1em;
+    color: var(--border-light); /* Lighter grey arrow */
+    margin-left: 10px;
+}
+
+/* Loading/Error state basic styling */
+.loading-error-message {
+    padding: 40px;
+    text-align: center;
+    font-size: 1.2em;
+    color: var(--text-dark); /* Dark text for messages */
+}
+
+.loading-error-message p {
+    margin: 0;
+}
