@@ -101,13 +101,35 @@ async function initiateVcfDownload(vcfApiEndpoint, fileName, buttonElement) {
   try {
     // Fetch the VCF file as plain text
     const response = await fetch(vcfApiEndpoint);
+
     if (!response.ok) throw new Error(`Failed: ${response.statusText}`);
 
     const vcfText = await response.text();
 
+    console.log(vcfText);
+    /////////////////////////////////////////////////////////////////////////////// Vcard json to vcard
+
+    // Convert JSON string to object
+    const userData = JSON.parse(vcfText);
+
+    function generateVCard(data) {
+      return `BEGIN:VCARD
+VERSION:3.0
+FN:${data.fullName || ""}
+ORG:Air Astra
+TITLE:${data.designation || ""}
+TEL;TYPE=CELL:${data.phone || ""}
+EMAIL;TYPE=WORK:${data.email || ""}
+END:VCARD`;
+    }
+
+    const vCardText = generateVCard(userData);
+    //////////////////////////////////////////////////////////////////////////////////////////
+
     // Create and download the .vcf file
-    const blob = new Blob([vcfText], { type: "text/vcard;charset=utf-8" });
+    const blob = new Blob([vCardText], { type: "text/vcard;charset=utf-8" });
     const url = URL.createObjectURL(blob);
+
 
     const a = document.createElement("a");
     a.href = url;
@@ -115,6 +137,7 @@ async function initiateVcfDownload(vcfApiEndpoint, fileName, buttonElement) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+
 
     URL.revokeObjectURL(url);
     buttonElement.textContent = "SAVE CONTACT";
