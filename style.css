@@ -166,17 +166,23 @@ body {
 
 .contact-item {
     display: flex;
+    flex-shrink: 0;  /* Prevents shrinking when inside a flex container */
+    min-width: max-content; /* Container expands to fit its content */ 
     align-items: center;
-    background-color: var(--card-bg-light); /* White background for items */
+    background-color: var(--card-bg-light);
     margin-bottom: 12px;
     padding: 15px;
     border-radius: var(--border-radius-sm);
     text-decoration: none;
-    color: var(--text-dark); /* Dark text for items */
+    color: var(--text-dark);
     transition: background-color 0.2s ease, transform 0.2s ease;
-    border: 1px solid var(--border-light); /* Light grey border */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Lighter shadow */
-    position: relative; /* For the focus ring */
+    border: 1px solid var(--border-light);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: relative;
+
+    /* Prevent line breaks and allow container to grow */
+    white-space: nowrap; /* Keeps the text on a single line */
+    overflow: visible;   /* Let content overflow if needed */
 }
 
 .contact-item:last-child {
@@ -226,4 +232,5 @@ body {
 
 .loading-error-message p {
     margin: 0;
+
 }
