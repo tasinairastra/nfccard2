@@ -107,13 +107,14 @@ async function initiateVcfDownload(vcfApiEndpoint, fileName, buttonElement) {
     const vcfText = await response.text();
 
     console.log(vcfText);
-    /////////////////////////////////////////////////////////////////////////////// Vcard json to vcard
+        /////////////////////////////////////////////////////////////////////////////// Vcard json to vcard
 
     // Convert JSON string to object
     const userData = JSON.parse(vcfText);
 
     function generateVCard(data) {
-      return `BEGIN:VCARD
+    const vCard = 
+`BEGIN:VCARD
 VERSION:3.0
 FN:${data.fullName || ""}
 ORG:Air Astra
@@ -121,7 +122,12 @@ TITLE:${data.designation || ""}
 TEL;TYPE=CELL:${data.phone || ""}
 EMAIL;TYPE=WORK:${data.email || ""}
 END:VCARD`;
-    }
+
+    return vCard;
+}
+
+
+
 
     const vCardText = generateVCard(userData);
     //////////////////////////////////////////////////////////////////////////////////////////
@@ -149,3 +155,4 @@ END:VCARD`;
     buttonElement.disabled = false;
   }
 }
+
